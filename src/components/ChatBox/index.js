@@ -11,6 +11,9 @@ const ChatBot = ({ name }) => {
   const [currentMessage, setCurrentMessage] = useState('');
   const [completeMessage, setCompleteMessage] = useState('');
 
+  //audio message
+  const [audioInput, setAudioInput] = useState('');
+
   let greetings = '';
   let today = new Date();
   let curHr = today.getHours();
@@ -24,8 +27,6 @@ const ChatBot = ({ name }) => {
   }
 
   let greetingMessage = `Hi ${name}, ${greetings}`;
-  //audio message
-  const [audioInput, setAudioInput] = useState('');
 
   //mock data
   let responseArr = [

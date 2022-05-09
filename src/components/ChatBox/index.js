@@ -162,6 +162,7 @@ import './chatbox.css';
 import Messages from './Messages';
 import sendButton from './send.png';
 import { Context } from './../../context/Context';
+import SpeechRecorder from './SpeechRecorder';
 
 const ChatBot = ({name}) => {
   const [messageData, setMessageData] = useState([]);
@@ -169,6 +170,7 @@ const ChatBot = ({name}) => {
   const [currentMessage, setCurrentMessage] = useState('');
   const [completeMessage, setCompleteMessage] = useState('');
 
+<<<<<<< HEAD
     let greetings = '';
   let today = new Date();
   let curHr = today.getHours(); 
@@ -182,6 +184,10 @@ const ChatBot = ({name}) => {
   }
 
   let greetingMessage = `Hi ${name}, ${greetings}`;
+=======
+  //audio message
+  const [audioInput, setAudioInput] = useState('');
+>>>>>>> a4b9daa (Added :Mic icon and speech recorder)
 
   //mock data
   let responseArr = [
@@ -247,6 +253,12 @@ const ChatBot = ({name}) => {
     setCurrentMessage('');
   };
 
+  const handleSpeechInput = () => {
+    handleAllMessages(audioInput);
+    setAudioInput('');
+  };
+
+
   const handleSubmitOnEnter = (event) => {
     if (event.key === 'Enter'  && event.target.value.trim()) {
       submitAction();
@@ -294,6 +306,11 @@ const ChatBot = ({name}) => {
         <button onClick={handleSubmitOnButtonClick} ref={submitButtonRef} >
           <img src={sendButton} alt='Send Button' />
         </button>
+        <SpeechRecorder
+          handleSpeechInput={handleSpeechInput}
+          audioInput={audioInput}
+          setAudioInput={setAudioInput}
+        />
       </div>
     </div>
   );

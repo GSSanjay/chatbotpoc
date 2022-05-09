@@ -201,3 +201,26 @@
 .right-textcard {
   border-radius: 10px 10px 0px 10px;
 }
+
+
+#toggle {
+  -webkit-animation-name: change-size;
+  animation-name: change-size;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+}
+
+@keyframes change-size {
+  25% {
+    padding: 3px;
+  }
+  50% {
+    padding: 5px;
+  }
+  75% {
+    padding: 3px;
+  }
+  100% {
+    padding: 5px;
+  }
+}

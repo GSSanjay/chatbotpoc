@@ -29,11 +29,15 @@ const Message = ({ messageData }) => {
       ) : (
         <div className='card-container'>
           {messageData?.text ? (
-            <div className='icon-text right'>
-              <TextCard text={messageData?.text} isBot={messageData?.isBot} />
-              <div className='icon'>
-                <img className='userImg' src={userImg} alt='User Image' />
+            <div>
+              
+              <div className='icon-text right'>
+                <TextCard text={messageData?.text} isBot={messageData?.isBot} />
+                <div className='icon'>
+                  <img className='userImg' src={userImg} alt='User Image' />
+                </div>
               </div>
+            
             </div>
           ) : null}
         </div>

@@ -1,10 +1,10 @@
 import React from 'react';
-import ChatBox from './../ChatBox';
+import ChatBotIcon from './ChatBotIcon';
 
 const Home = () => {
   return (
     <div>
-      <ChatBox />
+      <ChatBotIcon />
     </div>
   );
 };

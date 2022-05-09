@@ -1,20 +1,19 @@
 import Message from './Message';
 import PropTypes from 'prop-types';
 
-const Messages = ({ messages, sendDataToParent }) => {
+const Messages = ({ messageData }) => {
   return (
     <div className='box'>
-      {messages &&
-        messages.map((message, i) => {
-          return <Message key={i} message={message} sendDataToParent={sendDataToParent} />;
+      {messageData &&
+        messageData.map((message, i) => {
+          return <Message key={i} messageData={message} />;
         })}
     </div>
   );
 };
 
 Messages.propTypes = {
-  messages: PropTypes.any,
-  sendDataToParent: PropTypes.func
+  messageData: PropTypes.array.isRequired
 };
 
 export default Messages;

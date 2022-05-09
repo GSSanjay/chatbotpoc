@@ -1,26 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import botImg from './bot.svg';
-import userImg from './user.svg';
+import botImg from './bot.png';
+import userImg from './user.png';
 import TextCard from './TextCard';
+import OptionsCard from './OptionsCard';
+import ItemsCard from './ItemsCard';
 
-const Message = ({ message }) => {
+const Message = ({ messageData }) => {
   return (
     <div>
-      {message.isBot ? (
+      {messageData.isBot ? (
         <div className='card-container'>
           <div className='icon-text'>
             <div className='icon'>
               <img className='botImg' src={botImg} alt='Bot Image' />
             </div>
-            {message?.text ? <TextCard text={message.text} /> : null}
+            {messageData?.text ? (
+              <TextCard text={messageData?.text} isBot={messageData?.isBot} />
+            ) : null}
+          </div>
+          {messageData?.options?.length !== 0 ? (
+            <OptionsCard options={messageData?.options} />
+          ) : null}
+          <div className='card'>
+            {messageData?.items?.length !== 0 ? <ItemsCard items={messageData?.items} /> : null}
           </div>
         </div>
       ) : (
         <div className='card-container'>
-          {message?.text ? (
+          {messageData?.text ? (
             <div className='icon-text right'>
-              <TextCard text={message.text} />
+              <TextCard text={messageData?.text} isBot={messageData?.isBot} />
               <div className='icon'>
                 <img className='userImg' src={userImg} alt='User Image' />
               </div>
@@ -33,9 +43,7 @@ const Message = ({ message }) => {
 };
 
 Message.propTypes = {
-  align: PropTypes.string,
-  message: PropTypes.object,
-  sendDataToParent: PropTypes.func
+  messageData: PropTypes.object.isRequired
 };
 
 export default Message;

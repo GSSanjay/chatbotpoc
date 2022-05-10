@@ -7,8 +7,16 @@ const ChatBotIcon = () => {
   const [name, setName] = useState('');
   const [displayChat, setDisplayChat] = useState(false);
 
+  const styles = {
+    chatIcon: {
+      right: 5,
+      position: 'fixed',
+      bottom: 5
+    }
+  };
+
   return (
-    <div className='logo' style={{ right: 5, position: 'fixed', bottom: 5 }}>
+    <div style={styles.chatIcon}>
       {namePopUp && !displayChat ? (
         <NamePopUp
           namePopUp={namePopUp}

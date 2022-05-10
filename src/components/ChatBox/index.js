@@ -4,6 +4,7 @@ import Messages from './Messages';
 import sendButton from './send.png';
 import { Context } from './../../context/Context';
 import SpeechRecorder from './SpeechRecorder';
+import PropTypes from 'prop-types';
 
 const ChatBot = ({ name }) => {
   const [messageData, setMessageData] = useState([]);
@@ -151,6 +152,10 @@ const ChatBot = ({ name }) => {
       </div>
     </div>
   );
+};
+
+ChatBot.propTypes = {
+  name: PropTypes.string
 };
 
 export default ChatBot;

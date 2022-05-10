@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,9 +42,10 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
       fontSize: '12px',
       fontFamily: 'Eina 01',
       fontStyle: 'normal',
-      fontWeight: 600
+      fontWeight: 600,
+      paddingBottom: '6px'
     },
-    DialogActions: {
+    dialogActions: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -72,9 +74,9 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
         PaperProps={{
           style: { borderRadius: 10 }
         }}>
-        <div className='dialogbox' style={styles.dialogbox}>
+        <div style={styles.dialogbox}>
           <DialogContent>
-            <div className='botIcon' style={styles.botIcon}>
+            <div style={styles.botIcon}>
               <img src={BotIcon} style={{ width: 58 }} />
             </div>
             <DialogContentText style={styles.iconFontColor}>
@@ -98,7 +100,7 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
               }}
             />
           </DialogContent>
-          <DialogActions className='DialogActions' style={styles.DialogActions}>
+          <DialogActions style={styles.dialogActions}>
             <Button onClick={handleClose} disabled={!name.trim()} style={styles.submitButton}>
               Enter
             </Button>
@@ -107,6 +109,13 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
       </Dialog>
     </div>
   );
+};
+
+NamePopUp.propTypes = {
+  namePopUp: PropTypes.bool,
+  setDisplayChat: PropTypes.func,
+  setName: PropTypes.func,
+  name: PropTypes.string
 };
 
 export default NamePopUp;

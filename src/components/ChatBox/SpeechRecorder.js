@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import MicSharpIcon from '@mui/icons-material/MicSharp';
 import MicNoneSharpIcon from '@mui/icons-material/MicNoneSharp';
@@ -18,7 +19,7 @@ const SpeechRecorder = ({ audioInput, setAudioInput, handleSpeechInput }) => {
   };
 
   if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
+    return <span>Browser does not support speech recognition.</span>;
   }
 
   listening
@@ -40,6 +41,12 @@ const SpeechRecorder = ({ audioInput, setAudioInput, handleSpeechInput }) => {
       )}
     </div>
   );
+};
+
+SpeechRecorder.propTypes = {
+  audioInput: PropTypes.string,
+  setAudioInput: PropTypes.func,
+  handleSpeechInput: PropTypes.func
 };
 
 export default SpeechRecorder;

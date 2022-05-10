@@ -6,7 +6,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import BotGif from '../../assets/bot.png';
+import BotIcon from '../../assets/bot.png';
 
 const useStyles = makeStyles({
   input: {
@@ -75,7 +75,7 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
         <div className='dialogbox' style={styles.dialogbox}>
           <DialogContent>
             <div className='botIcon' style={styles.botIcon}>
-              <img src={BotGif} style={{ width: 60 }} />
+              <img src={BotIcon} style={{ width: 58 }} />
             </div>
             <DialogContentText style={styles.iconFontColor}>
               Hola my name is Amigo!!!

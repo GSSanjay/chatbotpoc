@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import botImg from './bot.png';
-import userImg from './user.png';
+import botImg from '../../assets/bot-icon.png';
+import userImg from '../../assets/user-icon.png';
 import TextCard from './TextCard';
 import OptionsCard from './OptionsCard';
 import ItemsCard from './ItemsCard';
@@ -30,14 +30,12 @@ const Message = ({ messageData }) => {
         <div className='card-container'>
           {messageData?.text ? (
             <div>
-              
               <div className='icon-text right'>
                 <TextCard text={messageData?.text} isBot={messageData?.isBot} />
                 <div className='icon'>
                   <img className='userImg' src={userImg} alt='User Image' />
                 </div>
               </div>
-            
             </div>
           ) : null}
         </div>

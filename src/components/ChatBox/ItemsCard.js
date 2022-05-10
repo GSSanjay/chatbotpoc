@@ -8,13 +8,15 @@ const ItemsCard = ({ items }) => {
     <div>
       <div className='itemscard'>
         {items &&
-          items?.map((item, i) => {
+          items?.map((item) => {
             return (
-              <div className='itemcard' key={i}>
-                <img src={item?.url} alt='' />
-                <h6 className='item-title'>{item?.name}</h6>
-                <h6 className='item-price'>${item?.price}</h6>
-                <button onClick={() => sendItemData(item?.name)}>Add </button>
+              <div className='itemcard' key={item?.structValue?.fields?.id?.numberValue}>
+                <img src={item?.structValue?.fields?.url?.stringValue} alt='' />
+                <h6 className='item-title'>{item?.structValue?.fields?.name?.stringValue}</h6>
+                <h6 className='item-price'>${item?.structValue?.fields?.price?.stringValue}</h6>
+                <button onClick={() => sendItemData(item?.structValue?.fields?.name?.stringValue)}>
+                  Add
+                </button>
               </div>
             );
           })}

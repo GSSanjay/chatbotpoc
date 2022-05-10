@@ -5,6 +5,7 @@ import sendButton from './send.png';
 import { Context } from './../../context/Context';
 import SpeechRecorder from './SpeechRecorder';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 const ChatBot = ({ name }) => {
   const [messageData, setMessageData] = useState([]);
@@ -29,48 +30,32 @@ const ChatBot = ({ name }) => {
 
   let greetingMessage = `Hi ${name}, ${greetings}`;
 
-  //mock data
-  let responseArr = [
-    {
-      text: 'Hello, How are you? ',
-      options: ['wine', 'show wine'],
-      items: null,
-      isBot: true
-    },
-    {
-      text: 'Show me Wine',
-      options: null,
-      items: null,
-      isBot: false
-    },
-    {
-      text: 'Here you go: ',
-      options: ['you can choose one', 'choose two'],
-      items: [
-        {
-          name: 'Wine 1',
-          url: 'https://media.istockphoto.com/photos/red-wine-with-property-release-picture-id157405246?s=170667a',
-          price: '$32.9'
-        },
-        {
-          name: 'Wine 2',
-          url: 'https://media.istockphoto.com/photos/red-wine-bottle-picture-id987571978?k=20&m=987571978&s=612x612&w=0&h=zGIYQaDvaDeuolW_AHecpQEhzEsPSDYC-7fBiJSak10=',
-          price: '$42.9'
-        },
-        {
-          name: 'Wine 3',
-          url: 'https://thumbs.dreamstime.com/b/red-wine-bottle-6737662.jpg',
-          price: '$52.9'
-        }
-      ],
-      isBot: true
-    }
-  ];
+  const handleMessageOnSubmit = (message) => {
+    const data = {
+      message
+    };
 
-  const handleMessageOnSubmit = () => {
-    setTimeout(() => {
-      setMessageData((messageData) => [...messageData, ...responseArr]);
-    }, 1000);
+    axios
+      .post('https://expresschatapiapp.herokuapp.com/chatbot', data)
+      .then((response) => {
+        const responseData = {
+          text:
+            response.data.message.responseMessages[0].payload.fields.message.stringValue != ''
+              ? response.data.message.responseMessages[0].payload.fields.message.stringValue
+              : "Sorry, I can't get it. Can you please repeat once?",
+          options:
+            response.data.message.responseMessages[0].payload.fields.options.listValue.values,
+          items:
+            response.data.message.responseMessages[0].payload.fields.items.listValue.values[0]
+              ?.listValue?.values,
+          isBot: true
+        };
+
+        setMessageData((messageData) => [...messageData, responseData]);
+      })
+      .catch((error) => {
+        console.log('Error: ', error);
+      });
   };
 
   const handleMessageOnChange = (event) => {
@@ -114,6 +99,7 @@ const ChatBot = ({ name }) => {
   };
 
   const sendItemData = (item) => {
+    console.log(item);
     setCompleteMessage(item);
   };
 

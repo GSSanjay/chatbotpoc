@@ -3,12 +3,31 @@ import './chatbox.css';
 import Messages from './Messages';
 import sendButton from './send.png';
 import { Context } from './../../context/Context';
+import SpeechRecorder from './SpeechRecorder';
+import PropTypes from 'prop-types';
 
-const ChatBot = () => {
+const ChatBot = ({ name }) => {
   const [messageData, setMessageData] = useState([]);
   //input messages
   const [currentMessage, setCurrentMessage] = useState('');
   const [completeMessage, setCompleteMessage] = useState('');
+
+  //audio message
+  const [audioInput, setAudioInput] = useState('');
+
+  let greetings = '';
+  let today = new Date();
+  let curHr = today.getHours();
+
+  if (curHr < 12) {
+    greetings = 'Good Morning';
+  } else if (curHr < 18) {
+    greetings = 'Good Afternoon';
+  } else {
+    greetings = 'Good Evening';
+  }
+
+  let greetingMessage = `Hi ${name}, ${greetings}`;
 
   //mock data
   let responseArr = [
@@ -58,19 +77,28 @@ const ChatBot = () => {
     setCurrentMessage(event.target.value);
   };
 
-  const submitAction = () => {
-    setCompleteMessage(currentMessage);
+  let handleAllMessages = (inputMessage) => {
     const message = {
-      text: completeMessage,
+      text: inputMessage,
       isBot: false
     };
     setMessageData((messageData) => [...messageData, message]);
     handleMessageOnSubmit(message.text);
+  };
+
+  const submitAction = () => {
+    setCompleteMessage(currentMessage);
+    handleAllMessages(completeMessage);
     setCurrentMessage('');
   };
 
+  const handleSpeechInput = () => {
+    handleAllMessages(audioInput);
+    setAudioInput('');
+  };
+
   const handleSubmitOnEnter = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && event.target.value.trim()) {
       submitAction();
     }
   };
@@ -93,6 +121,10 @@ const ChatBot = () => {
     submitButtonRef.current.click();
   }, [completeMessage]);
 
+  useEffect(() => {
+    handleAllMessages(greetingMessage);
+  }, []);
+
   return (
     <div className='container'>
       <Context.Provider value={{ sendOptionData, sendItemData }}>
@@ -112,9 +144,18 @@ const ChatBot = () => {
         <button onClick={handleSubmitOnButtonClick} ref={submitButtonRef}>
           <img src={sendButton} alt='Send Button' />
         </button>
+        <SpeechRecorder
+          handleSpeechInput={handleSpeechInput}
+          audioInput={audioInput}
+          setAudioInput={setAudioInput}
+        />
       </div>
     </div>
   );
+};
+
+ChatBot.propTypes = {
+  name: PropTypes.string
 };
 
 export default ChatBot;

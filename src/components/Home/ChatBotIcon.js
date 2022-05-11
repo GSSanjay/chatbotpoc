@@ -17,16 +17,17 @@ const ChatBotIcon = () => {
 
   return (
     <div style={styles.chatIcon}>
-      {namePopUp && !displayChat ? (
+      {namePopUp ? (
         <NamePopUp
           namePopUp={namePopUp}
           setDisplayChat={setDisplayChat}
+          setNamePopUp={setNamePopUp}
           setName={setName}
           name={name}
         />
       ) : null}
       {displayChat ? (
-        <ChatBox name={name} />
+        <ChatBox name={name} setDisplayChat={setDisplayChat} isplayChat={displayChat} />
       ) : (
         <div>
           <img

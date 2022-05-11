@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   }
 });
 
-const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
+const NamePopUp = ({ namePopUp, setDisplayChat, setName, name, setNamePopUp }) => {
   const classes = useStyles();
 
   const styles = {
@@ -39,6 +39,7 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
   };
   const handleClose = () => {
     setDisplayChat(true);
+    setNamePopUp(false);
   };
 
   return (
@@ -87,7 +88,8 @@ NamePopUp.propTypes = {
   namePopUp: PropTypes.bool,
   setDisplayChat: PropTypes.func,
   setName: PropTypes.func,
-  name: PropTypes.string
+  name: PropTypes.string,
+  setNamePopUp: PropTypes.func
 };
 
 export default NamePopUp;

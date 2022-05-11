@@ -1,8 +1,12 @@
+:root {
+  --textfont: 'Eina 01';
+}
+
 .bot-name {
   color: #ffffff;
   font-size: 18px;
   padding-bottom: 25px;
-  font-family: 'Eina 01';
+  font-family: var(--textfont);
   font-style: normal;
   font-weight: 600;
 }
@@ -10,7 +14,7 @@
 .user-name {
   color: #ffffff;
   font-size: 14px;
-  font-family: 'Eina 01';
+  font-family: var(--textfont);
   font-style: normal;
   font-weight: 600;
   padding-bottom: 6px;
@@ -23,7 +27,7 @@
   border: #ffffff;
   border-radius: 100px;
   font-size: 16px;
-  font-family: 'Eina 01';
+  font-family: var(--textfont);
   font-style: normal;
   font-weight: 600;
 }

@@ -18,6 +18,7 @@ const useStyles = makeStyles({
 
 const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
   const classes = useStyles();
+
   const styles = {
     dialogbox: {
       backgroundColor: '#001b96',
@@ -31,7 +32,7 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
     },
     iconFontColor: {
       color: 'white',
-      fontSize: '16px',
+      fontSize: '18px',
       paddingBottom: '25px',
       fontFamily: 'Eina 01',
       fontStyle: 'normal',
@@ -39,7 +40,7 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
     },
     nameFontColor: {
       color: 'white',
-      fontSize: '12px',
+      fontSize: '14px',
       fontFamily: 'Eina 01',
       fontStyle: 'normal',
       fontWeight: 600,

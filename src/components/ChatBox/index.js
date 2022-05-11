@@ -6,15 +6,24 @@ import { Context } from './../../context/Context';
 import SpeechRecorder from './SpeechRecorder';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 const ChatBot = ({ name }) => {
   const [messageData, setMessageData] = useState([]);
+  //lottie animation
+  const [loading, setLoading] = useState(false);
+
   //input messages
   const [currentMessage, setCurrentMessage] = useState('');
   const [completeMessage, setCompleteMessage] = useState('');
 
   //audio message
   const [audioInput, setAudioInput] = useState('');
+
+  //audio response
+  const { speak, voices } = useSpeechSynthesis();
+  const [audio, setAudio] = useState(false);
+  const [audioResponse, setAudioResponse] = useState('');
 
   let greetings = '';
   let today = new Date();
@@ -31,6 +40,7 @@ const ChatBot = ({ name }) => {
   let greetingMessage = `Hi ${name}, ${greetings}`;
 
   const handleMessageOnSubmit = (message) => {
+    setLoading(true);
     const data = {
       message
     };
@@ -38,6 +48,7 @@ const ChatBot = ({ name }) => {
     axios
       .post('https://expresschatapiapp.herokuapp.com/chatbot', data)
       .then((response) => {
+        setLoading(false);
         const responseData = {
           text:
             response.data.message.responseMessages[0].payload.fields.message.stringValue != ''
@@ -48,10 +59,13 @@ const ChatBot = ({ name }) => {
           items:
             response.data.message.responseMessages[0].payload.fields.items.listValue.values[0]
               ?.listValue?.values,
-          isBot: true
+          isBot: true,
+          audioOutput: response.data.message.responseMessages[1].outputAudioText.text
         };
 
         setMessageData((messageData) => [...messageData, responseData]);
+        setAudioResponse(response.data.message.responseMessages[1].outputAudioText.text);
+        setAudio(true);
       })
       .catch((error) => {
         console.log('Error: ', error);
@@ -99,7 +113,6 @@ const ChatBot = ({ name }) => {
   };
 
   const sendItemData = (item) => {
-    console.log(item);
     setCompleteMessage(item);
   };
 
@@ -114,9 +127,17 @@ const ChatBot = ({ name }) => {
   return (
     <div className='container'>
       <Context.Provider value={{ sendOptionData, sendItemData }}>
-        <Messages messageData={messageData} />
+        <Messages messageData={messageData} loading={loading} />
       </Context.Provider>
       <div className='typing-area'>
+        {audio
+          ? (speak({
+              text: audioResponse,
+              //25 27 31 33
+              voice: voices[31]
+            }),
+            setAudio(false))
+          : null}
         <div className='input-field'>
           <input
             type='text'

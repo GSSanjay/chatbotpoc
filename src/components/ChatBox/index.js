@@ -7,8 +7,9 @@ import SpeechRecorder from './SpeechRecorder';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-const ChatBot = ({ name }) => {
+const ChatBot = ({ name, setDisplayChat }) => {
   const [messageData, setMessageData] = useState([]);
   //lottie animation
   const [loading, setLoading] = useState(false);
@@ -133,6 +134,16 @@ const ChatBot = ({ name }) => {
 
   return (
     <div className='container'>
+      <div className='setting'>
+        <ChevronLeftIcon
+          className='exit-chat'
+          onClick={() => {
+            setDisplayChat(false);
+            cancel();
+          }}
+        />
+        <span className='chatboxt-name'>Amigo Bot</span>
+      </div>
       <Context.Provider value={{ sendOptionData, sendItemData }}>
         <Messages messageData={messageData} loading={loading} />
       </Context.Provider>
@@ -169,7 +180,8 @@ const ChatBot = ({ name }) => {
 };
 
 ChatBot.propTypes = {
-  name: PropTypes.string
+  name: PropTypes.string,
+  setDisplayChat: PropTypes.func
 };
 
 export default ChatBot;

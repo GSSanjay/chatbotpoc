@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@mui/material/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import BotIcon from '../../assets/bot.png';
+import './namepopup.css';
 
 const useStyles = makeStyles({
   input: {
@@ -16,7 +15,7 @@ const useStyles = makeStyles({
   }
 });
 
-const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
+const NamePopUp = ({ namePopUp, setDisplayChat, setName, name, setNamePopUp }) => {
   const classes = useStyles();
 
   const styles = {
@@ -30,42 +29,17 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
       alignItems: 'center',
       paddingBottom: '30px'
     },
-    iconFontColor: {
-      color: 'white',
-      fontSize: '18px',
-      paddingBottom: '25px',
-      fontFamily: 'Eina 01',
-      fontStyle: 'normal',
-      fontWeight: 600
-    },
-    nameFontColor: {
-      color: 'white',
-      fontSize: '14px',
-      fontFamily: 'Eina 01',
-      fontStyle: 'normal',
-      fontWeight: 600,
-      paddingBottom: '6px'
-    },
     dialogActions: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       padding: '15px 0px 10px 0px',
       backgroundColor: '#001b96'
-    },
-    submitButton: {
-      backgroundColor: 'white',
-      color: '#001b96',
-      padding: '7px 25px 5px 25px',
-      borderRadius: 20,
-      fontSize: '16px',
-      fontFamily: 'Eina 01',
-      fontStyle: 'normal',
-      fontWeight: 600
     }
   };
   const handleClose = () => {
     setDisplayChat(true);
+    setNamePopUp(false);
   };
 
   return (
@@ -80,10 +54,8 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
             <div style={styles.botIcon}>
               <img src={BotIcon} style={{ width: 58 }} />
             </div>
-            <DialogContentText style={styles.iconFontColor}>
-              Hola my name is Amigo!!!
-            </DialogContentText>
-            <DialogContentText style={styles.nameFontColor}>How do I call you?</DialogContentText>
+            <p className='bot-name'>Hola my name is Amigo!!!</p>
+            <p className='user-name'>How do I call you?</p>
             <TextField
               inputProps={{ className: classes.input }}
               autoFocus
@@ -102,9 +74,9 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name }) => {
             />
           </DialogContent>
           <DialogActions style={styles.dialogActions}>
-            <Button onClick={handleClose} disabled={!name.trim()} style={styles.submitButton}>
+            <button className='enter-btn' onClick={handleClose} disabled={!name.trim()}>
               Enter
-            </Button>
+            </button>
           </DialogActions>
         </div>
       </Dialog>
@@ -116,7 +88,8 @@ NamePopUp.propTypes = {
   namePopUp: PropTypes.bool,
   setDisplayChat: PropTypes.func,
   setName: PropTypes.func,
-  name: PropTypes.string
+  name: PropTypes.string,
+  setNamePopUp: PropTypes.func
 };
 
 export default NamePopUp;

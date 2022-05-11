@@ -19,7 +19,7 @@ const SpeechRecorder = ({ audioInput, setAudioInput, handleSpeechInput }) => {
   };
 
   if (!browserSupportsSpeechRecognition) {
-    return <span>Browser does not support speech recognition.</span>;
+    return null;
   }
 
   listening

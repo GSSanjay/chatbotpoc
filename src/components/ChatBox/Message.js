@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import botImg from '../../assets/bot-icon.png';
 import userImg from '../../assets/user-icon.png';
@@ -19,11 +19,13 @@ const Message = ({ messageData }) => {
               <TextCard text={messageData?.text} isBot={messageData?.isBot} />
             ) : null}
           </div>
-          {messageData?.options?.length !== 0 ? (
+          {messageData?.options && messageData?.options?.length !== 0 ? (
             <OptionsCard options={messageData?.options} />
           ) : null}
           <div className='card'>
-            {messageData?.items?.length !== 0 ? <ItemsCard items={messageData?.items} /> : null}
+            {messageData?.items && messageData?.items?.length !== 0 ? (
+              <ItemsCard items={messageData?.items} />
+            ) : null}
           </div>
         </div>
       ) : (

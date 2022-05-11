@@ -49,22 +49,19 @@ const ChatBot = ({ name }) => {
       .post('https://expresschatapiapp.herokuapp.com/chatbot', data)
       .then((response) => {
         setLoading(false);
+        const responsePayload = response?.data?.message?.responseMessages[0]?.payload;
+        const fallbackText = response?.data?.message?.responseMessages[0]?.text?.text[0];
         const responseData = {
-          text:
-            response.data.message.responseMessages[0].payload.fields.message.stringValue != ''
-              ? response.data.message.responseMessages[0].payload.fields.message.stringValue
-              : "Sorry, I can't get it. Can you please repeat once?",
-          options:
-            response.data.message.responseMessages[0].payload.fields.options.listValue.values,
-          items:
-            response.data.message.responseMessages[0].payload.fields.items.listValue.values[0]
-              ?.listValue?.values,
-          isBot: true,
-          audioOutput: response.data.message.responseMessages[1].outputAudioText.text
+          text: responsePayload ? responsePayload?.fields?.message?.stringValue : fallbackText,
+          options: responsePayload?.fields?.options?.listValue?.values,
+          items: responsePayload?.fields?.items?.listValue?.values[0]?.listValue?.values,
+          isBot: true
         };
 
         setMessageData((messageData) => [...messageData, responseData]);
-        setAudioResponse(response.data.message.responseMessages[1].outputAudioText.text);
+        const audioOutput =
+          response?.data?.message?.responseMessages[1]?.outputAudioText?.text || fallbackText;
+        setAudioResponse(audioOutput);
         setAudio(true);
       })
       .catch((error) => {
@@ -87,7 +84,7 @@ const ChatBot = ({ name }) => {
 
   const submitAction = () => {
     setCompleteMessage(currentMessage);
-    handleAllMessages(completeMessage);
+    completeMessage && handleAllMessages(completeMessage);
     setCurrentMessage('');
   };
 

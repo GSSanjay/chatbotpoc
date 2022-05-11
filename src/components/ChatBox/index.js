@@ -21,7 +21,7 @@ const ChatBot = ({ name }) => {
   const [audioInput, setAudioInput] = useState('');
 
   //audio response
-  const { speak, voices } = useSpeechSynthesis();
+  const { speak, voices, cancel } = useSpeechSynthesis();
   const [audio, setAudio] = useState(false);
   const [audioResponse, setAudioResponse] = useState('');
 
@@ -123,6 +123,13 @@ const ChatBot = ({ name }) => {
   useEffect(() => {
     handleAllMessages(greetingMessage);
   }, []);
+
+  useEffect(() => {
+    if (!audio) {
+      cancel();
+      setAudio(true);
+    }
+  }, [audioResponse]);
 
   return (
     <div className='container'>

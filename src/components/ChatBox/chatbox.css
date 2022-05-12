@@ -8,14 +8,19 @@
 :root {
   --bgprimary: #1600d5;
   --bgsecondary: #ffffff;
+  --bgthree: #f6f6f6;
+  --bgfour: #f7f6f9;
   --colorprimary: #ffffff;
   --colorsecondary: #333;
+  --colorthee: #131313;
+  --colorfour: #000000;
   --chatboxbg: #e5e5e5;
   --messageborder: #dfdfdf;
   --inputfieldbg: #eff3f7;
   --greyprimary: #b3b3b3;
   --brownprimary: #7a1a27;
   --textfont: 'Eina 01';
+  --bgfive: #f6f6f6;
 }
 
 .container {
@@ -28,8 +33,6 @@
 }
 
 .container .box {
-  /* min-height: 500px;
-  max-height: 550px; */
   height: 500px;
   overflow: auto;
   background-color: var(--bgsecondary);
@@ -79,7 +82,7 @@
   border: 1px solid transparent;
   border-radius: 5px;
   outline: none;
-  background-color: var(--inputfieldbg);
+  background-color: var(--bgfour);
 }
 
 .container .typing-area .input-field input:focus {
@@ -199,7 +202,7 @@
   font-weight: bold;
   font-family: var(--textfont);
   font-style: normal;
-  color: #ffffff;
+  color: var(--colorprimary);
 }
 
 .icon-text {
@@ -218,9 +221,14 @@
 
 .right-textcard {
   border-radius: 10px 10px 0px 10px;
+  background-color: var(--bgthree);
 }
 
-.setting {
+.right-textcard p {
+  color: var(--colorthee);
+}
+
+.topbar {
   display: flex;
   align-items: center;
   padding: 15px 15px 20px 15px;
@@ -230,12 +238,12 @@
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
-  color: #000000;
+  color: var(--colorfour);
   right: 9em;
   position: fixed;
 }
 .exit-chat {
-  background-color: #f7f6f9;
+  background-color: var(--bgfour);
   align-items: flex-start;
   border-radius: 100px;
   padding: 2px;
@@ -262,12 +270,18 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .container {
     width: 100%;
     height: 100%;
   }
   .container .box {
     width: 100%;
+    height: 85%;
+  }
+  .container .typing-area {
+    right: 0;
+    position: fixed;
+    bottom: 0;
   }
 }

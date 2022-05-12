@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './chatbox.css';
 import Messages from './Messages';
-import sendButton from './send.png';
+import sendButton from '../../assets/send.png';
 import { Context } from './../../context/Context';
 import SpeechRecorder from './SpeechRecorder';
 import PropTypes from 'prop-types';
@@ -131,7 +131,7 @@ const ChatBot = ({ name, setDisplayChat }) => {
 
   return (
     <div className='container'>
-      <div className='setting'>
+      <div className='topbar'>
         <ChevronLeftIcon
           className='exit-chat'
           onClick={() => {
@@ -156,7 +156,7 @@ const ChatBot = ({ name, setDisplayChat }) => {
         <div className='input-field'>
           <input
             type='text'
-            placeholder='Enter Message'
+            placeholder='Ask anything'
             required
             value={currentMessage}
             onChange={handleMessageOnChange}

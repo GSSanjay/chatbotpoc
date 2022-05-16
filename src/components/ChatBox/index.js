@@ -119,7 +119,7 @@ const ChatBot = ({ name, setDisplayChat }) => {
   }, [completeMessage]);
 
   useEffect(() => {
-    handleAllMessages(greetingMessage);
+    handleMessageOnSubmit(greetingMessage);
   }, []);
 
   useEffect(() => {
@@ -139,7 +139,7 @@ const ChatBot = ({ name, setDisplayChat }) => {
             cancel();
           }}
         />
-        <span className='chatboxt-name'>Amigo Bot</span>
+        <span className='chatboxt-name'>Amigo</span>
       </div>
       <Context.Provider value={{ sendOptionData, sendItemData }}>
         <Messages messageData={messageData} loading={loading} />

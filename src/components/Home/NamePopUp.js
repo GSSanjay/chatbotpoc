@@ -20,7 +20,7 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name, setNamePopUp }) =
 
   const styles = {
     dialogbox: {
-      backgroundColor: '#001b96',
+      backgroundColor: '#1600d5',
       padding: '7px 30px 30px 30px'
     },
     botIcon: {
@@ -34,7 +34,7 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name, setNamePopUp }) =
       flexDirection: 'column',
       alignItems: 'center',
       padding: '15px 0px 10px 0px',
-      backgroundColor: '#001b96'
+      backgroundColor: '#1600d5'
     }
   };
   const handleClose = () => {

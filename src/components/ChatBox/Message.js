@@ -11,14 +11,18 @@ const Message = ({ messageData }) => {
     <div>
       {messageData.isBot ? (
         <div className='card-container'>
-          <div className='icon-text'>
-            <div className='icon'>
-              <img className='botImg' src={botImg} alt='Bot Image' />
+          {messageData?.text ? (
+            <div className='icon-text'>
+              <div className='icon'>
+                <img className='botImg' src={botImg} alt='Bot Image' />
+              </div>
+              <TextCard
+                text={messageData?.text}
+                isBot={messageData?.isBot}
+                action={messageData?.action}
+              />
             </div>
-            {messageData?.text ? (
-              <TextCard text={messageData?.text} isBot={messageData?.isBot} />
-            ) : null}
-          </div>
+          ) : null}
           {messageData?.options && messageData?.options?.length !== 0 ? (
             <OptionsCard options={messageData?.options} />
           ) : null}
@@ -31,12 +35,10 @@ const Message = ({ messageData }) => {
       ) : (
         <div className='card-container'>
           {messageData?.text ? (
-            <div>
-              <div className='icon-text right'>
-                <TextCard text={messageData?.text} isBot={messageData?.isBot} />
-                <div className='icon'>
-                  <img className='userImg' src={userImg} alt='User Image' />
-                </div>
+            <div className='icon-text right'>
+              <TextCard text={messageData?.text} isBot={messageData?.isBot} />
+              <div className='icon'>
+                <img className='userImg' src={userImg} alt='User Image' />
               </div>
             </div>
           ) : null}

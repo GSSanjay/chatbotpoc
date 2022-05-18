@@ -10,8 +10,8 @@ const OptionsCard = ({ options }) => {
         {options &&
           options.map((option, i) => {
             return (
-              <li className='option' key={i} onClick={() => sendOptionData(option.stringValue)}>
-                {option.stringValue}
+              <li className='option' key={i} onClick={() => sendOptionData(option)}>
+                {option}
               </li>
             );
           })}

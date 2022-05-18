@@ -1,9 +1,11 @@
 :root {
   --textfont: 'Eina 01';
+  --whiteprimary: #ffffff;
+  --blueprimary: #1600d5;
 }
 
 .bot-name {
-  color: #ffffff;
+  color: var(--whiteprimary);
   font-size: 18px;
   padding-bottom: 25px;
   font-family: var(--textfont);
@@ -12,7 +14,7 @@
 }
 
 .user-name {
-  color: #ffffff;
+  color: var(--whiteprimary);
   font-size: 14px;
   font-family: var(--textfont);
   font-style: normal;
@@ -21,10 +23,10 @@
 }
 
 .enter-btn {
-  background-color: #ffffff;
-  color: #001b96;
+  background-color: var(--whiteprimary);
+  color: var(--blueprimary);
   padding: 7px 25px 5px 25px;
-  border: #ffffff;
+  border: var(--whiteprimary);
   border-radius: 100px;
   font-size: 16px;
   font-family: var(--textfont);

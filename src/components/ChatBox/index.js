@@ -5,9 +5,9 @@ import sendButton from '../../assets/send.png';
 import { Context } from './../../context/Context';
 import SpeechRecorder from './SpeechRecorder';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import getData from '../../api/getData';
 
 const ChatBot = ({ name, setDisplayChat }) => {
   const [messageData, setMessageData] = useState([]);
@@ -45,29 +45,12 @@ const ChatBot = ({ name, setDisplayChat }) => {
     const data = {
       message
     };
-
-    axios
-      .post('https://expresschatapiapp.herokuapp.com/chatbot', data)
-      .then((response) => {
-        setLoading(false);
-        const responsePayload = response?.data?.message?.responseMessages[0]?.payload;
-        const fallbackText = response?.data?.message?.responseMessages[0]?.text?.text[0];
-        const responseData = {
-          text: responsePayload ? responsePayload?.fields?.message?.stringValue : fallbackText,
-          options: responsePayload?.fields?.options?.listValue?.values,
-          items: responsePayload?.fields?.items?.listValue?.values[0]?.listValue?.values,
-          isBot: true
-        };
-
-        setMessageData((messageData) => [...messageData, responseData]);
-        const audioOutput =
-          response?.data?.message?.responseMessages[1]?.outputAudioText?.text || fallbackText;
-        setAudioResponse(audioOutput);
-        setAudio(true);
-      })
-      .catch((error) => {
-        console.log('Error: ', error);
-      });
+    getData(data).then((responseData) => {
+      setLoading(false);
+      responseData && setMessageData((messageData) => [...messageData, responseData]);
+      responseData && setAudioResponse(responseData?.audioOutput);
+      setAudio(true);
+    });
   };
 
   const handleMessageOnChange = (event) => {

@@ -29,7 +29,6 @@ const getData = (data) => {
     .then((response) => {
       const responsePayload = response?.data?.message?.responseMessages[0]?.payload;
       const fallbackText = response?.data?.message?.responseMessages[0]?.text?.text[0];
-      console.log(fallbackText);
       const responseData = {
         text: responsePayload ? responsePayload?.fields?.message?.stringValue : fallbackText,
         options: getOptinsData(responsePayload?.fields?.options?.listValue?.values),

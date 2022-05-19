@@ -2,6 +2,7 @@
   --textfont: 'Eina 01';
   --whiteprimary: #ffffff;
   --blueprimary: #1600d5;
+  --grey-secondary: #929191;
 }
 
 .bot-name {
@@ -32,4 +33,8 @@
   font-family: var(--textfont);
   font-style: normal;
   font-weight: 600;
+}
+
+.disabled {
+  color: var(--grey-secondary);
 }

@@ -1,0 +1,203 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bgprimary: #1600d5;
+  --bgsecondary: #ffffff;
+  --colorprimary: #ffffff;
+  --colorsecondary: #333;
+  --chatboxbg: #e5e5e5;
+  --messageborder: #dfdfdf;
+  --inputfieldbg: #eff3f7;
+  --greyprimary: #b3b3b3;
+  --brownprimary: #7a1a27;
+}
+
+.container {
+  width: 400px;
+  right: 0;
+  position: fixed;
+  bottom: 0;
+  border: 1px solid var(--bgsecondary);
+}
+
+.container .box {
+  min-height: 500px;
+  max-height: 550px;
+  overflow: auto;
+  background-color: var(--chatboxbg);
+}
+
+.container .box .card {
+  display: flex;
+  margin: 0.5rem 0;
+  width: 100%;
+  overflow: auto;
+}
+
+.icon {
+  color: var(--colorprimary);
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+}
+
+.icon .userImg {
+  width: 40px;
+  height: 40px;
+}
+
+.icon .botImg {
+  width: 32px;
+  height: 32px;
+}
+
+.container .typing-area {
+  width: 100%;
+  background: var(--bgsecondary);
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.container .typing-area .input-field {
+  width: 100%;
+}
+
+.container .typing-area .input-field input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  outline: none;
+  background-color: var(--inputfieldbg);
+}
+
+.container .typing-area .input-field input:focus {
+  border-color: var(--bgprimary);
+}
+
+.container .typing-area button {
+  cursor: pointer;
+  border: none;
+  padding: 0 0.5rem;
+  background-color: var(--bgsecondary);
+}
+
+.itemscard {
+  display: flex;
+  padding: 0.5rem 0;
+  margin: 0rem 1rem;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--greyprimary);
+}
+
+.itemcard img {
+  height: 130px;
+  width: 130px;
+}
+
+.itemcard button {
+  margin: 0.5rem 0rem;
+  width: 118px;
+  height: 35px;
+  border: none;
+  padding: 0.5rem 0.2rem;
+  cursor: pointer;
+  background-color: var(--bgprimary);
+  color: var(--colorprimary);
+  border-radius: 100px;
+  font-size: 16px;
+}
+
+.itemcard {
+  margin: 0.5rem;
+  box-shadow: 0px 0px 5px 0 var(--messageborder);
+  border-radius: 10px;
+  padding: 1rem;
+  min-width: 200px;
+  background-color: var(--bgsecondary);
+}
+
+.item-title {
+  font-size: 16px;
+  margin: 0.5rem 0rem;
+}
+
+.item-price {
+  color: var(--brownprimary);
+  font-size: 12px;
+}
+
+.options {
+  margin: 0 2rem;
+  background-color: var(--bgsecondary);
+  margin: 0 3.5rem;
+  padding: 0.1rem 0rem;
+  border-radius: 10px 10px 10px 0px;
+}
+
+.option {
+  list-style: none;
+  background-color: var(--bgprimary);
+  margin: 1rem;
+  border-radius: 20px;
+  color: var(--colorprimary);
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.textcard {
+  border-radius: 10px 10px 10px 0px;
+  box-shadow: 0px 0px 5px 0 var(--messageborder);
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  background-color: var(--bgsecondary);
+}
+.textcard p {
+  text-align: left;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.icon-text {
+  display: flex;
+  margin: 1rem;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.card-container {
+  width: 100%;
+}
+
+.right-textcard {
+  border-radius: 10px 10px 0px 10px;
+}

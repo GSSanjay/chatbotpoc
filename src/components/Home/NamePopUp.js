@@ -74,7 +74,10 @@ const NamePopUp = ({ namePopUp, setDisplayChat, setName, name, setNamePopUp }) =
             />
           </DialogContent>
           <DialogActions style={styles.dialogActions}>
-            <button className='enter-btn' onClick={handleClose} disabled={!name.trim()}>
+            <button
+              className={!name.trim() ? 'enter-btn disabled' : 'enter-btn'}
+              onClick={handleClose}
+              disabled={!name.trim()}>
               Enter
             </button>
           </DialogActions>
